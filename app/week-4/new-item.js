@@ -35,7 +35,7 @@ export default function NewItem() {
           Increment
         </button>
         <button
-          className="font-large font-large bg-yellow-800 hover:bg-orange-300 text-white font-bold p-2 px-4  mt-12rounded"
+          className="font-large font-large bg-yellow-800 hover:bg-orange-300 text-white font-bold p-2 px-4  mt-12 rounded"
           disabled={decrement <= 1}
           onClick={decrement}
         >
