@@ -1,176 +1,72 @@
-import Item from "./item";
+"use client";
+import { useState } from "react";
+import items from "./items.json";
+import Item from "./item.js";
+
 export default function ItemList() {
-    
-    const item1 = {
-        name: "milk, 4 L 🥛",
-        quantity: 1,
-        category: "dairy",
-      };
-       
-      const item2 = {
-        name: "bread 🍞",
-        quantity: 2,
-        category: "bakery",
-      };
-       
-      const item3 = {
-        name: "eggs, dozen 🥚",
-        quantity: 2,
-        category: "dairy",
-      };
-       
-      const item4 = {
-        name: "bananas 🍌",
-        quantity: 6,
-        category: "produce",
-      };
-       
-      const item5 = {
-        name: "broccoli 🥦",
-        quantity: 3,
-        category: "produce",
-      };
-       
-      const item6 = {
-        name: "chicken breasts, 1 kg 🍗",
-        quantity: 1,
-        category: "meat",
-      };
-       
-      const item7 = {
-        name: "pasta sauce 🍝",
-        quantity: 3,
-        category: "canned goods",
-      };
-       
-      const item8 = {
-        name: "spaghetti, 454 g 🍝",
-        quantity: 2,
-        category: "dry goods",
-      };
-       
-      const item9 = {
-        name: "toilet paper, 12 pack 🧻",
-        quantity: 1,
-        category: "household",
-      };
-       
-      const item10 = {
-        name: "paper towels, 6 pack",
-        quantity: 1,
-        category: "household",
-      };
-       
-      const item11 = {
-        name: "dish soap 🍽️",
-        quantity: 1,
-        category: "household",
-      };
-       
-      const item12 = {
-        name: "hand soap 🧼",
-        quantity: 4,
-        category: "household",
-      };
-    
-    return(
-            <main>
-                <section className= " font-bold p-2 pl-4 m-4 bg-red-400 max-w-sm ">
-                <Item
-                  name={item1.name}
-                  quantity={item1.quantity}
-                  category={item1.category}
-                />
-              </section>
+  const [sortBy, setSortBy] = useState("name");
+
+  let sortedItems = [...items];
+  if (sortBy === "category") {
+    sortedItems.sort((a, b) => a.category.localeCompare(b.category));
+  }
+  if (sortBy === "name") {
+    sortedItems.sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  return (
+    <main
+      style={{
+        backgroundColor: "white",
+        padding: "20px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+
+    >
+      <section style={{ marginBottom: "20px" }}>
+        <h2 className="font-extrabold text-2xl text-white mb-4">Sort by:</h2>
+        <button
+          className="font-extrabold bg-blue-500 text-white hover:cursor-pointer py-2 px-4 rounded-md mr-2 hover:bg-blue-700 transition-all duration-300"
+          onClick={() => setSortBy("name")}
+          style={{ marginRight: "5px", padding: "10px 20px" }}
+        >
+          Name
+        </button>
+        <button
+          className="font-extrabold bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-all duration-300 m-auto"
+          onClick={() => setSortBy("category")}
+          style={{ marginLeft: "5px", padding: "10px 20px" }}
+        >
+          Category
+        </button>
+      </section>
+      <ul
         
-              <section className="font-bold p-2 pl-4 m-4 bg-yellow-500 max-w-sm">
-                <Item
-                  name={item2.name}
-                  quantity={item2.quantity}
-                  category={item2.category}
-                />
-              </section>
-        
-              <section className="font-bold p-2 pl-4 m-4 bg-neutral-500 max-w-sm">
-                <Item
-                  name={item3.name}
-                  quantity={item3.quantity}
-                  category={item3.category}
-                />
-              </section>
-        
-              <section className=" font-bold p-2 pl-4 m-4 bg-orange-400 max-w-sm">
-                <Item
-                  name={item4.name}
-                  quantity={item4.quantity}
-                  category={item4.category}
-                />
-              </section>
-        
-              <section className="font-bold p-2 pl-4 m-4 bg-amber-600 max-w-sm">
-                <Item
-                  name={item5.name}
-                  quantity={item5.quantity}
-                  category={item5.category}
-                />
-              </section>
-        
-              <section className=" font-bold p-2 pl-4 m-4 bg-lime-500 max-w-sm">
-                <Item
-                  name={item6.name}
-                  quantity={item6.quantity}
-                  category={item6.category}
-                />
-              </section>
-        
-              <section className="p-2 pl-4 m-4 font-bold bg-green-500 max-w-sm">
-                <Item
-                  name={item7.name}
-                  quantity={item7.quantity}
-                  category={item7.category}
-                />
-              </section>
-        
-              <section className="p-2 pl-4 m-4 font-bold border-l- bg-indigo-400 max-w-sm">
-                <Item
-                  name={item8.name}
-                  quantity={item8.quantity}
-                  category={item8.category}
-                />
-              </section>
-        
-              <section className="p-2 pl-4 m-4 font-bold  bg-orange-500 max-w-sm">
-                <Item
-                  name={item9.name}
-                  quantity={item9.quantity}
-                  category={item9.category}
-                />
-              </section>
-        
-              <section className="p-2 pl-4 m-4 font-bold bg-neutral-500 max-w-sm">
-                <Item
-                  name={item10.name}
-                  quantity={item10.quantity}
-                  category={item10.category}
-                />
-              </section>
-        
-              <section className="p-2 pl-4 m-4 font-bold bg-lime-600 max-w-sm">
-                <Item
-                  name={item11.name}
-                  quantity={item11.quantity}
-                  category={item11.category}
-                />
-              </section>
-        
-              <section className="p-2 pl-4 m-4 font-bold bg-purple-700 max-w-sm">
-                <Item
-                  name={item12.name}
-                  quantity={item12.quantity}
-                  category={item12.category}
-                />
-                </section>
-            </main>
-          );
-        }
-    
+
+      >
+        {sortedItems.map((item) => (
+          <li className="text-slate-900 border-2 border-black solid  border-centre"
+            key={item.id}
+            style={{
+              marginBottom: "10px",
+              transition: "all 0.3s ease-in-out",
+              width: "80%",
+            }}
+          >
+            <div
+              style={{
+                border: "2px solid white",
+                
+              }}
+             
+            >
+              <Item {...item} />
+            </div>
+          </li>
+        ))}
+      </ul>
+    </main>
+  );
+}
