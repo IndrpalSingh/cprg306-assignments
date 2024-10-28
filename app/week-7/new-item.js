@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function NewItem() {
+export default function NewItem({onAddItem}) {
   const [quantity, setQuantity] = useState(1);
   const [name, setName] = useState("");
   const [category, setCategory] = useState("produce");
@@ -34,6 +34,15 @@ export default function NewItem() {
     window.alert(
       `Item: ${item.name} \nCategory: ${item.category} \nQuantity: ${item.quantity}`
     );
+    setQuantity(1);
+    setCategory("produce");
+    setName("");
+
+
+    if (onAddItem) {
+      onAddItem(item);
+    }
+
     setQuantity(1);
     setCategory("produce");
     setName("");
@@ -70,6 +79,8 @@ export default function NewItem() {
         >
           Reset
         </button>
+
+
 
         <form className="flex flex-col items-center mt-4 space-y-4" onSubmit={handleSubmit}>
           <input
