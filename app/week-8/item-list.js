@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Item from "./item.js";
 
-export default function ItemList({items}) {
+export default function ItemList({ items, onItemSelect }) {
   const [sortBy, setSortBy] = useState("name");
 
   let sortedItems = [...items];
@@ -14,54 +14,36 @@ export default function ItemList({items}) {
   }
 
   return (
-    <main
-      style={{
-        backgroundColor: "white",
-        padding: "20px",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-
-    >
-      <section style={{ marginBottom: "20px" }}>
-        <h2 className="font-extrabold text-2xl text-white mb-4">Sort by:</h2>
-        <button
-          className="font-extrabold bg-blue-500 text-white hover:cursor-pointer py-2 px-4 rounded-md mr-2 hover:bg-blue-700 transition-all duration-300"
-          onClick={() => setSortBy("name")}
-          style={{ marginRight: "5px", padding: "10px 20px" }}
-        >
-          Name
-        </button>
-        <button
-          className="font-extrabold bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-all duration-300 m-auto"
-          onClick={() => setSortBy("category")}
-          style={{ marginLeft: "5px", padding: "10px 20px" }}
-        >
-          Category
-        </button>
+    <main className="bg-black p-5 flex flex-col items-center min-h-screen">
+      <section className="mb-5 w-full max-w-2xl">
+        <h2 className="font-extrabold text-2xl text-white mb-4 text-center">Sort by:</h2>
+        <div className="flex justify-center">
+          <button
+            className="font-extrabold bg-blue-500 text-white hover:cursor-pointer py-2 px-4 rounded-md mr-2 hover:bg-blue-700 transition-all duration-300"
+            onClick={() => setSortBy("name")}
+          >
+            Name
+          </button>
+          <button
+            className="font-extrabold bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-all duration-300 ml-2"
+            onClick={() => setSortBy("category")}
+          >
+            Category
+          </button>
+        </div>
       </section>
-      <ul
-        
-
-      >
+      <ul className="p-0 m-0 list-none w-full max-w-2xl flex flex-col items-center">
         {sortedItems.map((item) => (
-          <li className="text-slate-900 border-2 border-black solid  border-centre"
+          <li
             key={item.id}
-            style={{
-              marginBottom: "10px",
-              transition: "all 0.3s ease-in-out",
-              width: "80%",
-            }}
+            className="mb-4 w-full transition-all duration-300 ease-in-out"
           >
             <div
-              style={{
-                border: "2px solid white",
-                
-              }}
-             
+              className={`border-2 border-white p-4 rounded-lg shadow-lg:scale-105`}
+
+              onClick={() => onItemSelect(item)}
             >
-              <Item {...item} />
+              <Item {...item} onSelect={() => onItemSelect(item)} />
             </div>
           </li>
         ))}

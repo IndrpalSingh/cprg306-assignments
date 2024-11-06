@@ -1,16 +1,20 @@
 export default function Item(props) {
-    return (
-      <main>
-        <ul>
-          <li>
-            <section>
-              <h1 classname="text-4xl font-bold m-8">{props.name}</h1>
-              <p>
-                Buy {props.quantity} in {props.category}
-              </p>
-            </section>
-          </li>
-        </ul>
-      </main>
-    );
-  }
+  const { name, quantity, category, onSelect } = props; 
+
+  return (
+    <main>
+      <ul>
+        <li>
+          <section onClick={onSelect}>
+          
+         
+            <h1 className="font-extrabold text-2xl pb-3">{name}</h1>
+            <p>
+              Buy {quantity} in {category}
+            </p>
+          </section>
+        </li>
+      </ul>
+    </main>
+  );
+}

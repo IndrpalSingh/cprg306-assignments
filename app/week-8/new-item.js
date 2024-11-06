@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 
-export default function NewItem({onAddItem}) {
+export default function NewItem({ onAddItem }) {
   const [quantity, setQuantity] = useState(1);
   const [name, setName] = useState("");
   const [category, setCategory] = useState("produce");
 
   const increment = () => {
-     setQuantity(quantity + 1 < 20 ? quantity + 1 : 20);
+    setQuantity(quantity + 1 < 20 ? quantity + 1 : 20);
   };
 
   const decrement = () => {
@@ -25,19 +25,11 @@ export default function NewItem({onAddItem}) {
     event.preventDefault();
 
     const item = {
+      id: Date.now(),
       name: name,
       category: category,
       quantity: quantity,
     };
-
-    console.log({ item });
-    window.alert(
-      `Item: ${item.name} \nCategory: ${item.category} \nQuantity: ${item.quantity}`
-    );
-    setQuantity(1);
-    setCategory("produce");
-    setName("");
-
 
     if (onAddItem) {
       onAddItem(item);
@@ -50,8 +42,8 @@ export default function NewItem({onAddItem}) {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-stone-900">
-      <div className="bg-violet-700 shadow-lg p-8 text-center ">
-        <h1 className="text-3xl font-extrabold text-center text-black mb-2 ">
+      <div className="bg bg-green-400 shadow-lg p-8 text-center rounded-lg">
+        <h1 className="text-3xl font-extrabold text-center text-black mb-2">
           COUNTER PROGRAM FOR SHOPPING LIST
         </h1>
         <h1 className="text-2xl font-bold text-black mb-4">
@@ -59,14 +51,14 @@ export default function NewItem({onAddItem}) {
         </h1>
 
         <button
-          className="font-large bg-gray-700 hover:bg-red-700 text-white font-bold p-2 px-4 rounded mr-2"
-          disabled={quantity > 20}
+          className="font-large bg-gray-700 hover:bg-red-700 text-white font-bold p-2 px-4 rounded mr-2 transition duration-300 ease-in-out"
+          disabled={quantity >= 20}
           onClick={increment}
         >
           Increment
         </button>
         <button
-          className="font-large bg-yellow-800 hover:bg-cyan-700 text-white font-bold p-2 px-4 rounded mr-2"
+          className="font-large bg-yellow-800 hover:bg-cyan-700 text-white font-bold p-2 px-4 rounded mr-2 transition duration-300 ease-in-out"
           disabled={quantity <= 1}
           onClick={decrement}
         >
@@ -74,13 +66,11 @@ export default function NewItem({onAddItem}) {
         </button>
 
         <button
-          className="font-large bg-gray-700 hover:bg-green-700 text-white font-bold ml-2 px-4 p-2 rounded"
+          className="font-large bg-gray-700 hover:bg-green-700 text-white font-bold ml-2 px-4 p-2 rounded transition duration-300 ease-in-out"
           onClick={reset}
         >
           Reset
         </button>
-
-
 
         <form className="flex flex-col items-center mt-4 space-y-4" onSubmit={handleSubmit}>
           <input
@@ -89,11 +79,11 @@ export default function NewItem({onAddItem}) {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter Item Name"
-            className="p-2 mt-4 text-black"
+            className="p-2 mt-4 text-black rounded border border-gray-300"
           />
 
           <select
-            className="text-black"
+            className="text-black p-2 rounded border border-gray-300 "
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
@@ -104,15 +94,12 @@ export default function NewItem({onAddItem}) {
             <option value="household">Household</option>
             <option value="dry goods">Dry Goods</option>
             <option value="canned goods">Canned Goods</option>
-            <option value="frozen foods">Frozen Foods</option>
-            <option value="beverages">Beverages</option>
-            <option value="snacks">Snacks</option>
           </select>
 
           <div>
             <button
               type="submit"
-              className="font-large bg-blue-700 hover:bg-blue-900 text-white font-bold p-2 px-4 rounded mt-4"
+              className="font-large bg-blue-700 hover:bg-blue-900 text-white font-bold p-2 px-4 rounded mt-4 "
             >
               Submit
             </button>
