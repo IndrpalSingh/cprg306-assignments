@@ -8,7 +8,8 @@ export default function Page() {
       <a href="http://localhost:3000/week-4">week-4</a><br/>
       <a href="http://localhost:3000/week-5">week-5</a><br/>
       <a href="http://localhost:3000/week-6">week-6</a><br/>
-      <a href="http://localhost:3000/week-7">week-7</a>
+      <a href="http://localhost:3000/week-7">week-7</a><br/>
+      <a href="http://localhost:3000/week-8">week-8</a>
       </main>
 
 
