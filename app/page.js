@@ -11,6 +11,7 @@ export default function Page() {
       <a href="http://localhost:3000/week-7">week-7</a><br/>
       <a href="http://localhost:3000/week-8">week-8</a><br/>
       <a href="http://localhost:3000/week-9">week-9</a><br/>
+      <a href="http://localhost:3000/week-10">week-10</a><br/>
       
       </main>
 
